@@ -15,5 +15,6 @@ print('\nsource preview:')
 import inspect
 try:
     print('\n'.join(inspect.getsource(m).splitlines()[:40]))
-except Exception as e:
+except (OSError, ImportError, TypeError) as e:
+    # Narrow exception types to avoid catching overly broad Exception
     print('could not get source:', e)
